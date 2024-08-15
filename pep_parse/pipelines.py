@@ -2,15 +2,13 @@ import datetime as dt
 
 import csv
 from collections import defaultdict
-from pathlib import Path
 
-from pep_parse.settings import RESULTS_DIR
+from pep_parse.settings import BASE_DIR, RESULTS_DIR_NAME
 
 DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
 STATUS_SUMMARY_FILE_NAME = 'status_summary_{date}.csv'
 STATUS_NUM_HEAD = ('Статус', 'Количество')
 TOTAL_NUMBERS = 'Total'
-BASE_DIR = Path(__file__).parent
 
 
 class PepParsePipeline:
@@ -26,7 +24,9 @@ class PepParsePipeline:
             DATETIME_FORMAT
         )
         with open(
-            RESULTS_DIR / STATUS_SUMMARY_FILE_NAME.format(date=datetime_now),
+            BASE_DIR / RESULTS_DIR_NAME / (
+                STATUS_SUMMARY_FILE_NAME.format(date=datetime_now)
+            ),
             'w', encoding='utf-8'
         ) as results_file:
             csv.writer(
