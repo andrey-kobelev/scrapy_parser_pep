@@ -12,9 +12,15 @@ TOTAL_NUMBERS = 'Общее количество'
 
 
 class PepParsePipeline:
+
+    def __init__(self):
+        if RESULTS_DIR_NAME not in [
+            directory.name for directory in BASE_DIR.iterdir()
+        ]:
+            RESULTS_DIR.mkdir(exist_ok=True)
+
     def open_spider(self, spider):
         self.statuses_nums = defaultdict(int)
-        RESULTS_DIR.mkdir(exist_ok=True)
 
     def process_item(self, item, spider):
         self.statuses_nums[item['status']] += 1
