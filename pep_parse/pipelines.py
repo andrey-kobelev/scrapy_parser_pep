@@ -8,7 +8,7 @@ from pep_parse.settings import BASE_DIR, RESULTS_DIR_NAME
 DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
 STATUS_SUMMARY_FILE_NAME = 'status_summary_{date}.csv'
 STATUS_NUM_HEAD = ('Статус', 'Количество')
-TOTAL_NUMBERS = 'Total'
+TOTAL_NUMBERS = 'Общее количество'
 
 
 class PepParsePipeline:
@@ -30,11 +30,13 @@ class PepParsePipeline:
             'w', encoding='utf-8'
         ) as results_file:
             csv.writer(
-                results_file, dialect=csv.unix_dialect
+                results_file,
+                dialect=csv.unix_dialect,
+                quoting=csv.QUOTE_MINIMAL
             ).writerows(
-                [
+                (
                     STATUS_NUM_HEAD,
                     *self.statuses_nums.items(),
                     (TOTAL_NUMBERS, sum(self.statuses_nums.values()))
-                ]
+                )
             )
