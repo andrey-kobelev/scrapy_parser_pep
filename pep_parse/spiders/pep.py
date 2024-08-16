@@ -3,7 +3,6 @@ import re
 import scrapy
 
 from pep_parse.items import PepParseItem
-from pep_parse.settings import RESULTS_DIR
 
 
 PEP_NAME_REPLACE_PATTERN = re.compile(r'^PEP\s\d*\s\W*\s')
@@ -13,7 +12,6 @@ class PepSpider(scrapy.Spider):
     name = 'pep'
     allowed_domains = ['peps.python.org']
     start_urls = [f'https://{domain}/' for domain in allowed_domains]
-    RESULTS_DIR.mkdir(exist_ok=True)
 
     def parse(self, response):
         for pep_link in response.css(

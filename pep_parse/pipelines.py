@@ -3,7 +3,7 @@ import datetime as dt
 import csv
 from collections import defaultdict
 
-from pep_parse.settings import BASE_DIR, RESULTS_DIR_NAME
+from pep_parse.settings import BASE_DIR, RESULTS_DIR_NAME, RESULTS_DIR
 
 DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
 STATUS_SUMMARY_FILE_NAME = 'status_summary_{date}.csv'
@@ -14,6 +14,7 @@ TOTAL_NUMBERS = 'Общее количество'
 class PepParsePipeline:
     def open_spider(self, spider):
         self.statuses_nums = defaultdict(int)
+        RESULTS_DIR.mkdir(exist_ok=True)
 
     def process_item(self, item, spider):
         self.statuses_nums[item['status']] += 1
