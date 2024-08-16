@@ -33,10 +33,8 @@ class PepParsePipeline:
                 results_file,
                 dialect=csv.unix_dialect,
                 quoting=csv.QUOTE_MINIMAL
-            ).writerows(
-                (
-                    STATUS_NUM_HEAD,
-                    *self.statuses_nums.items(),
-                    (TOTAL_NUMBERS, sum(self.statuses_nums.values()))
-                )
-            )
+            ).writerows((
+                STATUS_NUM_HEAD,
+                *self.statuses_nums.items(),
+                (TOTAL_NUMBERS, sum(self.statuses_nums.values()))
+            ))
