@@ -4,7 +4,7 @@
     - [email](mailto:andrey.pydev@gmail.com)
   
 ## Технологии  
-- [Python](https://www.python.org/)
+- [Python 3.9](https://www.python.org/downloads/release/python-390/)
 - [Scrapy](https://docs.scrapy.org/en/latest/)
 
 ## Как запустить проект: 
